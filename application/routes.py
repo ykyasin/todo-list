@@ -6,9 +6,12 @@ from application.models import Tasks
 def home():
     all_tasks = Tasks.query.all()
     task_string = ""
-    for task in all_tasks:
-        task_string +=  task.description + ", complete? " + str(task.completed) + "<br>"
-    return task_string
+    if not all_tasks:
+        return "No tasks created"
+    else:
+        for task in all_tasks:
+            task_string +=  task.description + ", complete? " + str(task.completed) + "<br>"
+        return task_string
 
 
 @app.route("/create")
