@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title> Yusuf's todo list - {{ title }} </title>
+    </head>
+    <body>
+        <h1> Yusuf's Todo list - {{ title }} </h1> 
+        <a href="{{url_for('home')}}">Home</a>
+        <a href="{{url_for('create')}}">Create</a>
+
+        {% block body %}
+        {% endblock body %}
+    </body>
+</html>

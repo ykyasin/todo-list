@@ -1,17 +1,13 @@
 from application import app, db
 from application.models import Tasks
+from flask import render_template
 
 @app.route("/")
 @app.route("/home")
 def home():
     all_tasks = Tasks.query.all()
     task_string = ""
-    if not all_tasks:
-        return "No tasks created"
-    else:
-        for task in all_tasks:
-            task_string +=  task.description + ", complete? " + str(task.completed) + "<br>"
-        return task_string
+    return render_template("index.html", title="Home", all_tasks=all_tasks)
 
 
 @app.route("/create")
