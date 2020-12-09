@@ -6,7 +6,7 @@ from wtforms import StringField, SubmitField
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@34.105.219.79/todolist_db2"
-
+app.config['SECRET_KEY'] = 'yusuf'
 db  = SQLAlchemy(app)
 
 from application import routes 

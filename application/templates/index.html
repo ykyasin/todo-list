@@ -4,16 +4,16 @@
 <h2>Incomplete Tasks</h2>
 {% for task in all_tasks %}
     {% if task.completed == False %}
-        {{ task.description }}
-        {{ task.date_created }}
+        {{ task.description }} 
+        {{ task.date_created }} <br>
     {% endif %}
 {% endfor %}
 
 <h2>Complete Tasks</h2>
 {% for task in all_tasks %}
     {% if task.completed == True %}
-        {{ task.description }}
-        {{ task.date_created }}
+        {{ task.description }} 
+        {{ task.date_created }} <br>
     {% endif %}
 {% endfor %}
 
