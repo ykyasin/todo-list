@@ -36,16 +36,19 @@ def incomplete(id):
     db.session.commit()
     return "Task is still incomplete"
 
-@app.route("/update/<new_description>")
-def update(new_description):
-    task = Tasks.query.order_by(Tasks.id.desc()).first()
-    task.description = new_description
-    db.session.commit()
-    return "Task description updated"
+@app.route("/update/<int:id>", methods=['GET','POST'])
+def update(id):
+    form = TaskForm()
+    task = Tasks.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        task.description = form.description.data
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("update.html", title="Update title", form=form, task = task)
 
-@app.route("/delete/<int:id>")
+@app.route("/delete/<int:id>", methods=['GET', 'POST'])
 def delete(id):
     task = Tasks.query.filter_by(id=id).first()
     db.session.delete(task)
     db.session.commit()
-    return "task deleted"
+    return redirect(url_for("home"))
